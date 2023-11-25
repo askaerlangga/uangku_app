@@ -65,11 +65,14 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
             // Calendar Button
             TextButton(
                 onPressed: () async {
-                  _datePicker = await showMonthPicker(
+                  DateTime? selectedDate = await showMonthPicker(
                       context: context,
                       initialDate: DateTime(2023),
-                      firstDate: DateTime.now(),
-                      lastDate: DateTime(2024));
+                      firstDate: DateTime(2023),
+                      lastDate: DateTime(2025));
+                  if (selectedDate != null) {
+                    _datePicker = selectedDate;
+                  }
                   if (kDebugMode) {
                     print(_datePicker);
                   }
