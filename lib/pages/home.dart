@@ -1,5 +1,8 @@
 import 'package:fl_chart/fl_chart.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+import 'package:month_picker_dialog/month_picker_dialog.dart';
 import 'package:uangku_app/pages/hutang.dart';
 import 'package:uangku_app/pages/transaksi.dart';
 
@@ -12,6 +15,8 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
   late final TabController _tabController;
+  DateTime? _datePicker;
+
   @override
   void initState() {
     super.initState();
@@ -47,9 +52,26 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
             ),
           ]),
           actions: [
+            // Previous month Button
             IconButton(
                 onPressed: () {}, icon: const Icon(Icons.navigate_before)),
-            TextButton(onPressed: () {}, child: Text('Oktober 2023')),
+            // Calendar Button
+            TextButton(
+                onPressed: () async {
+                  _datePicker = await showMonthPicker(
+                      context: context,
+                      initialDate: DateTime(2023),
+                      firstDate: DateTime.now(),
+                      lastDate: DateTime(2024));
+                  if (kDebugMode) {
+                    print(_datePicker);
+                  }
+                  setState(() {});
+                },
+                child: Text(_datePicker != null
+                    ? DateFormat.yMMM().format(_datePicker!)
+                    : "")),
+            // Next month Button
             IconButton(onPressed: () {}, icon: const Icon(Icons.navigate_next)),
           ],
         ),
@@ -122,7 +144,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                 : FloatingActionButton(
                     onPressed: () {
                       // Checking if tab in transaction or debt
-                      if (_tabController.index == 0) {
+                      if (_tabController.index == 1) {
                         Navigator.push(
                             context,
                             MaterialPageRoute(

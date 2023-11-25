@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:uangku_app/pages/home.dart';
 
 void main() {
@@ -13,6 +14,10 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       theme: ThemeData(useMaterial3: true),
       home: const HomePage(),
+      localizationsDelegates: const [
+        GlobalWidgetsLocalizations.delegate,
+        GlobalMaterialLocalizations.delegate,
+      ],
     );
   }
 }
