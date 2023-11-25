@@ -54,7 +54,14 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
           actions: [
             // Previous month Button
             IconButton(
-                onPressed: () {}, icon: const Icon(Icons.navigate_before)),
+                onPressed: () {
+                  if (_datePicker != null) {
+                    _datePicker = DateTime(_datePicker!.year,
+                        _datePicker!.month - 1, _datePicker!.day);
+                    setState(() {});
+                  }
+                },
+                icon: const Icon(Icons.navigate_before)),
             // Calendar Button
             TextButton(
                 onPressed: () async {
@@ -72,7 +79,18 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                     ? DateFormat.yMMM().format(_datePicker!)
                     : "")),
             // Next month Button
-            IconButton(onPressed: () {}, icon: const Icon(Icons.navigate_next)),
+            IconButton(
+                onPressed: () {
+                  if (_datePicker != null) {
+                    _datePicker = DateTime(_datePicker!.year,
+                        _datePicker!.month + 1, _datePicker!.day);
+                    if (kDebugMode) {
+                      print(_datePicker);
+                    }
+                    setState(() {});
+                  }
+                },
+                icon: const Icon(Icons.navigate_next)),
           ],
         ),
         body: TabBarView(controller: _tabController, children: [
