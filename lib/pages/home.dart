@@ -67,7 +67,8 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                 onPressed: () async {
                   DateTime? selectedDate = await showMonthPicker(
                       context: context,
-                      initialDate: DateTime(2023),
+                      initialDate:
+                          (_datePicker == null) ? DateTime.now() : _datePicker,
                       firstDate: DateTime(2023),
                       lastDate: DateTime(2025));
                   if (selectedDate != null) {
