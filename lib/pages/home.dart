@@ -150,8 +150,58 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
               ),
             ],
           ),
-          Center(
-            child: Text('Tidak ada Transaksi'),
+          ListView(
+            children: const [
+              ListTile(
+                leading: CircleAvatar(child: Icon(Icons.directions_bus)),
+                title: Text('Transportasi'),
+                subtitle: Text('Naik bus Transjakarta'),
+                trailing: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    Text(
+                      'Rp-3,000',
+                      style: TextStyle(color: Colors.red, fontSize: 14),
+                    ),
+                    Text('20.00')
+                  ],
+                ),
+              ),
+              ListTile(
+                leading: CircleAvatar(child: Icon(Icons.restaurant)),
+                title: Text('Makanan & Minuman'),
+                subtitle: Text('Warteg'),
+                trailing: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    Text(
+                      'Rp-15,000',
+                      style: TextStyle(color: Colors.red, fontSize: 14),
+                    ),
+                    Text('17.00')
+                  ],
+                ),
+              ),
+              ListTile(
+                leading:
+                    CircleAvatar(child: Icon(Icons.account_balance_wallet)),
+                title: Text('Sallary'),
+                subtitle: null,
+                trailing: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    Text(
+                      'Rp10,000,000',
+                      style: TextStyle(color: Colors.green, fontSize: 14),
+                    ),
+                    Text('10.00')
+                  ],
+                ),
+              ),
+            ],
           ),
           Center(
             child: Text('Tidak ada Hutang'),
